@@ -117,11 +117,3 @@ fahrual_19-testing.ipynb
 ```
 
 Notebook tersebut mengirim request ke endpoint cloud Railway `https://mlops-production-cf92.up.railway.app/v1/models/iris-model:predict` dan menghasilkan status code `200`.
-
-## Berkas Screenshot yang Perlu Disertakan
-
-Setelah deployment dan monitoring berhasil dijalankan, simpan screenshot berikut sebelum membuat ZIP submission.
-
-1. `deployment/fahrual_19-deployment.png`: bukti endpoint model serving di cloud berhasil diakses.
-2. `deployment/fahrual_19-deployment-lokal.png`: bukti endpoint model serving lokal berhasil diakses.
-3. `monitoring/fahrual_19-monitoring.png`: bukti dashboard Prometheus berjalan dan target TensorFlow Serving terbaca.
