@@ -13,8 +13,8 @@ Username dicoding: fahrual_19
 | Metrik evaluasi | Metrik utama adalah `SparseCategoricalAccuracy` karena target berupa label integer multi-kelas. Pipeline juga mencatat `ExampleCount` melalui TensorFlow Model Analysis. Model diberi threshold minimal akurasi 0.5 agar dapat memperoleh blessing sebelum dipush. |
 | Performa model | Berdasarkan hasil `Evaluator`, model memperoleh `SparseCategoricalAccuracy` sebesar 0.85 dengan `loss` 0.4116 pada 60 data evaluasi. Model berhasil melewati threshold evaluasi dan dipush ke folder `serving_model/1781073761`. |
 | Opsi deployment | Deployment menggunakan Docker dan TensorFlow Serving. File `Dockerfile` menyalin model dari `serving_model` ke image TensorFlow Serving dengan nama model `iris-model`. Image ini dapat dijalankan lokal atau dideploy ke Railway sebagai alternatif Heroku. |
-| Web app | Endpoint lokal: [iris-model metadata](http://localhost:8501/v1/models/iris-model/metadata). Setelah deployment cloud berhasil, ganti bagian ini dengan URL Railway, misalnya `https://nama-project.up.railway.app/v1/models/iris-model/metadata`. |
-| Monitoring | Monitoring menggunakan Prometheus. TensorFlow Serving mengaktifkan endpoint metrik `/monitoring/prometheus/metrics` melalui `monitoring/prometheus.config`, lalu Prometheus membaca endpoint tersebut menggunakan konfigurasi `monitoring/prometheus.yml`. Screenshot monitoring perlu disimpan dengan nama `fahrual_19-monitoring`. |
+| Web app | Endpoint cloud Railway: [iris-model metadata](https://mlops-production-cf92.up.railway.app/v1/models/iris-model/metadata). Endpoint prediction: `https://mlops-production-cf92.up.railway.app/v1/models/iris-model:predict`. |
+| Monitoring | Monitoring menggunakan Prometheus. TensorFlow Serving mengaktifkan endpoint metrik `/monitoring/prometheus/metrics` melalui `monitoring/prometheus.config`, lalu Prometheus membaca endpoint tersebut menggunakan konfigurasi `monitoring/prometheus.yml`. Hasil monitoring lokal menunjukkan target `tensorflow-serving` berada dalam status `UP`. |
 
 ## Struktur Proyek
 
@@ -29,8 +29,12 @@ Username dicoding: fahrual_19
 |   +-- transform.py
 +-- monitoring/
 |   +-- Dockerfile
+|   +-- fahrual_19-monitoring.png
 |   +-- prometheus.config
 |   +-- prometheus.yml
++-- deployment/
+|   +-- fahrual_19-deployment.png
+|   +-- fahrual_19-deployment-lokal.png
 +-- serving_model/
 +-- Dockerfile
 +-- fahrual_19-pipeline.ipynb
@@ -112,12 +116,12 @@ Jalankan notebook:
 fahrual_19-testing.ipynb
 ```
 
-Notebook tersebut mengirim request ke endpoint `http://localhost:8501/v1/models/iris-model:predict`. Jika model sudah dideploy ke cloud, ubah variabel `MODEL_URL` menjadi URL cloud.
+Notebook tersebut mengirim request ke endpoint cloud Railway `https://mlops-production-cf92.up.railway.app/v1/models/iris-model:predict` dan menghasilkan status code `200`.
 
 ## Berkas Screenshot yang Perlu Disertakan
 
 Setelah deployment dan monitoring berhasil dijalankan, simpan screenshot berikut sebelum membuat ZIP submission.
 
-1. `fahrual_19-deployment.png`: bukti endpoint model serving di cloud berhasil diakses.
+1. `deployment/fahrual_19-deployment.png`: bukti endpoint model serving di cloud berhasil diakses.
 2. `deployment/fahrual_19-deployment-lokal.png`: bukti endpoint model serving lokal berhasil diakses.
 3. `monitoring/fahrual_19-monitoring.png`: bukti dashboard Prometheus berjalan dan target TensorFlow Serving terbaca.
