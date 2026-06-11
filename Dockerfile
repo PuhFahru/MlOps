@@ -8,4 +8,4 @@ COPY monitoring/prometheus.config /monitoring/prometheus.config
 EXPOSE 8501
 
 ENTRYPOINT []
-CMD tensorflow_model_server --rest_api_port=${PORT:-8501} --model_name=${MODEL_NAME} --model_base_path=/models/${MODEL_NAME} --monitoring_config_file=/monitoring/prometheus.config
+CMD tensorflow_model_server --rest_api_port=8501 --model_name=${MODEL_NAME} --model_base_path=/models/${MODEL_NAME} --monitoring_config_file=/monitoring/prometheus.config
