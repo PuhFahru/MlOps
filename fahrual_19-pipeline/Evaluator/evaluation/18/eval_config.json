@@ -1,0 +1,38 @@
+{
+  "evalConfig": {
+    "modelSpecs": [
+      {
+        "labelKey": "species"
+      }
+    ],
+    "slicingSpecs": [
+      {}
+    ],
+    "metricsSpecs": [
+      {
+        "metrics": [
+          {
+            "className": "SparseCategoricalAccuracy",
+            "threshold": {
+              "valueThreshold": {
+                "lowerBound": 0.5
+              }
+            }
+          },
+          {
+            "className": "ExampleCount"
+          }
+        ],
+        "modelNames": [
+          ""
+        ]
+      }
+    ]
+  },
+  "version": "0.45.0",
+  "dataLocation": "<user provided PCollection>",
+  "fileFormat": "<unknown>",
+  "modelLocations": {
+    "": "D:\\SERTIFIKAT DICODING\\Mlops\\Proyek pengembangan machine learning pipeline\\fahrual_19-pipeline\\Trainer\\model\\16\\Format-Serving"
+  }
+}
